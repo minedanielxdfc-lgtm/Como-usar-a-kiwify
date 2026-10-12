@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aprenda a usar a Kiwify</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f4f6f5;--card:#fff;--tx:#14201b;--mu:#5d6b65;--pr:#12a150;--pr2:#e3f5ea;--bd:#dde3e0;--hl:#ff9f1c}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1512;--card:#18211c;--tx:#eef3f0;--mu:#9fb0a8;--pr:#2ecc71;--pr2:#17301f;--bd:#2a3731}}
+:root[data-theme="dark"]{--bg:#0f1512;--card:#18211c;--tx:#eef3f0;--mu:#9fb0a8;--pr:#2ecc71;--pr2:#17301f;--bd:#2a3731}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.w{max-width:640px;margin:0 auto;padding:16px}
+h1{font-size:24px;margin:8px 0 4px}
+h2{font-size:20px;margin:0 0 8px}
+p{margin:8px 0}
+.mu{color:var(--mu);font-size:14px}
+.bar{height:10px;background:var(--bd);border-radius:9px;overflow:hidden;margin:12px 0 4px}
+.bar i{display:block;height:100%;background:var(--pr);width:0;transition:width .4s}
+.list{display:grid;gap:10px;margin-top:14px}
+.item{display:flex;gap:12px;align-items:center;background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px;cursor:pointer;width:100%;text-align:left;color:var(--tx);font:inherit}
+.n{flex:none;width:36px;height:36px;border-radius:50%;background:var(--pr2);color:var(--pr);display:grid;place-items:center;font-weight:700}
+.item.ok .n{background:var(--pr);color:#fff}
+.item b{display:block}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:16px;margin-top:12px}
+svg{width:100%;height:auto;display:block;border-radius:12px;border:1px solid var(--bd);margin:8px 0}
+ol{padding-left:22px;margin:8px 0}
+li{margin:8px 0}
+.tip{background:var(--pr2);border-left:4px solid var(--pr);padding:10px 12px;border-radius:8px;margin-top:12px;font-size:15px}
+.btn{display:block;width:100%;border:0;border-radius:12px;padding:14px;font:600 16px system-ui;background:var(--pr);color:#fff;margin-top:12px;cursor:pointer}
+.btn.s{background:var(--card);color:var(--tx);border:1px solid var(--bd)}
+.row{display:flex;gap:10px}
+.back{background:none;border:0;color:var(--pr);font:600 15px system-ui;padding:8px 0;cursor:pointer}
+.q button{display:block;width:100%;text-align:left;margin-top:8px;padding:12px;border-radius:10px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);font:inherit;cursor:pointer}
+.q button.r{background:var(--pr2);border-color:var(--pr)}
+.q button.e{border-color:#e05252}
+body{background:radial-gradient(900px 400px at 100% -10%,rgba(46,204,113,.18),transparent),radial-gradient(700px 400px at -10% 30%,rgba(255,159,28,.12),transparent),var(--bg);min-height:100vh}
+@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+#app>*{animation:up .45s both}
+#app>*:nth-child(2){animation-delay:.05s}#app>*:nth-child(3){animation-delay:.1s}#app>*:nth-child(4){animation-delay:.15s}
+.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#0b7a3b,#12a150 55%,#3ddc84);color:#fff;border-radius:24px;padding:26px 20px;margin-top:6px;box-shadow:0 12px 30px rgba(18,161,80,.35)}
+.hero:before,.hero:after{content:'';position:absolute;border-radius:50%;background:rgba(255,255,255,.12)}
+.hero:before{width:180px;height:180px;right:-50px;top:-60px}
+.hero:after{width:110px;height:110px;right:40px;bottom:-60px;background:rgba(255,159,28,.35)}
+.hero h1{font-size:28px;line-height:1.15;margin:10px 0 6px;position:relative}
+.hero p{margin:0;opacity:.95;position:relative}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.08em;background:rgba(255,255,255,.22);padding:4px 10px;border-radius:99px;position:relative}
+.card{box-shadow:0 4px 14px rgba(0,0,0,.06);border-radius:18px}
+.prog{margin-top:14px}
+.bar{height:12px;margin:8px 0}
+.bar i{background:linear-gradient(90deg,#12a150,#3ddc84,#ff9f1c);border-radius:9px}
+.item{border-radius:18px;box-shadow:0 3px 12px rgba(0,0,0,.06);transition:transform .15s,box-shadow .15s;border-left:5px solid var(--bd)}
+.item:active{transform:scale(.98)}
+.item:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.1)}
+.item.ok{border-left-color:var(--pr)}
+.n{width:42px;height:42px;font-size:17px;background:linear-gradient(135deg,var(--pr2),var(--bg))}
+.item.ok .n{background:linear-gradient(135deg,#12a150,#3ddc84);box-shadow:0 4px 10px rgba(18,161,80,.4)}
+svg{box-shadow:0 8px 24px rgba(0,0,0,.12);border:0;border-radius:16px}
+.btn{background:linear-gradient(135deg,#12a150,#2ecc71);border-radius:14px;box-shadow:0 6px 16px rgba(18,161,80,.35);transition:transform .15s}
+.btn:active{transform:scale(.98)}
+.btn.s{background:var(--card);box-shadow:none}
+h2{font-size:24px}
+.tip{border-radius:12px;background:linear-gradient(90deg,var(--pr2),transparent)}
+ol{counter-reset:s;list-style:none;padding:0}
+ol li{counter-increment:s;position:relative;padding-left:40px;min-height:30px}
+ol li:before{content:counter(s);position:absolute;left:0;top:0;width:28px;height:28px;border-radius:50%;background:var(--pr);color:#fff;font-weight:700;font-size:14px;display:grid;place-items:center}
+.q button{border-radius:12px;transition:transform .15s}
+.q button:active{transform:scale(.98)}
+:root:root:root{--bg:#09100d;--card:#121b17;--tx:#eaf5ef;--mu:#8fa69b;--pr:#00c46a;--pr2:#0f2a1e;--bd:#1f2d27;--hl:#ffb020;color-scheme:dark}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;display:flex;align-items:center;gap:8px;padding:12px 16px;background:rgba(9,16,13,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--bd)}
+.logo{font-weight:800;font-size:22px;color:#fff;letter-spacing:-.03em}.logo b{color:var(--pr)}
+.top span{margin-left:auto;font-size:12px;color:var(--mu);border:1px solid var(--bd);padding:3px 10px;border-radius:99px}
+.hero{background:linear-gradient(135deg,#00552e,#00a85a 60%,#00c46a);box-shadow:0 12px 30px rgba(0,196,106,.25)}
+.card,.item{box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.item:hover{box-shadow:0 8px 20px rgba(0,196,106,.2);border-color:var(--pr)}
+.btn{background:linear-gradient(135deg,#00a85a,#00c46a);color:#04140c;box-shadow:0 6px 18px rgba(0,196,106,.3)}
+.btn.s{background:var(--card);color:var(--tx);border:1px solid var(--bd)}
+.item.ok .n{color:#04140c}
+ol li:before{color:#04140c}
+svg{box-shadow:0 8px 24px rgba(0,0,0,.5);border:1px solid var(--bd)}
+.q button.r{color:var(--tx)}
+</style>
+</head>
+<body>
+<div class="top"><div class="logo">kiwi<b>fy</b></div><span>Guia para iniciantes</span></div>
+<div class="w" id="app"></div>
+<script>
+// ----- "Imagens": telas ilustradas (mockups) -----
+function mock(title,rows,btn,menu){
+  var s='<svg viewBox="0 0 360 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustração: '+title+'">';
+  s+='<defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#0b7a3b"/><stop offset="1" stop-color="#3ddc84"/></linearGradient></defs><rect width="360" height="230" fill="#f7f9f8"/><rect width="360" height="30" fill="url(#g)"/><circle cx="322" cy="15" r="4" fill="#fff" opacity=".5"/><circle cx="336" cy="15" r="4" fill="#fff" opacity=".5"/><circle cx="350" cy="15" r="4" fill="#fff" opacity=".5"/>';
+  s+='<text x="12" y="20" font-size="13" font-weight="700" fill="#fff" font-family="sans-serif">Kiwify · '+title+'</text>';
+  s+='<rect y="30" width="84" height="200" fill="#e9efec"/>';
+  (menu||['Dashboard','Produtos','Vendas','Afiliados','Financeiro']).forEach(function(m,i){
+    var on=m===(menu&&menu.on);
+    s+='<text x="10" y="'+(54+i*26)+'" font-size="11" font-family="sans-serif" fill="'+(on?'#12a150':'#4a5a53')+'" font-weight="'+(on?700:400)+'">'+m+'</text>';});
+  rows.forEach(function(r,i){
+    var y=44+i*40;
+    s+='<rect x="96" y="'+y+'" width="250" height="32" rx="7" fill="#fff" stroke="#cfd8d4"/>';
+    s+='<text x="106" y="'+(y+20)+'" font-size="11" font-family="sans-serif" fill="#33413b">'+r+'</text>';});
+  if(btn){
+    var by=44+rows.length*40+4;
+    s+='<rect x="96" y="'+by+'" width="150" height="32" rx="8" fill="#ff9f1c" stroke="#ff9f1c"/>';
+    s+='<text x="108" y="'+(by+21)+'" font-size="12" font-weight="700" font-family="sans-serif" fill="#fff">'+btn+'</text>';
+    s+='<circle cx="252" cy="'+(by+16)+'" r="9" fill="none" stroke="#ff9f1c" stroke-width="2"/><text x="248" y="'+(by+20)+'" font-size="11" fill="#ff9f1c" font-weight="700" font-family="sans-serif">←</text>';}
+  return s+'</svg>';
+}
+function M(menu,on){var m=['Dashboard','Produtos','Vendas','Afiliados','Financeiro'];m.on=on;return m;}
+
+// ----- Aulas -----
+var L=[
+{t:'O que é a Kiwify',img:mock('Painel',['Vendas de hoje: R$ 0,00','Produtos ativos: 0','Saldo disponível: R$ 0,00'],null,M(0,'Dashboard')),
+ txt:'A Kiwify é uma plataforma brasileira onde você vende produtos digitais (cursos, e-books, mentorias, eventos) sem precisar criar um site. Ela cuida do pagamento, da entrega do produto e do saque do seu dinheiro.',
+ steps:['Você cria o produto e define o preço.','A Kiwify gera o link de pagamento (checkout).','O cliente paga por Pix, cartão ou boleto.','O acesso ao produto é liberado automaticamente.','O valor cai no seu saldo e você saca.'],
+ tip:'Os nomes dos menus podem mudar de lugar com o tempo. Se algo estiver diferente, procure pelo nome no menu lateral.',
+ q:['Para que serve a Kiwify?',['Editar vídeos','Vender produtos digitais e receber os pagamentos','Hospedar jogos'],1]},
+{t:'Criar sua conta',img:mock('Criar conta',['Nome completo','E-mail','Senha'],'Criar conta',M(0,'')),
+ txt:'Tudo começa no site da Kiwify. Você só precisa de um e-mail e dados básicos.',
+ steps:['Abra o site da Kiwify e toque em "Criar conta".','Preencha nome, e-mail e senha.','Confirme seu e-mail (veja também o spam).','Complete seu cadastro com CPF/CNPJ e dados de pagamento, quando pedir.'],
+ tip:'Use um e-mail que você acessa sempre. É nele que chegam avisos de venda e recuperação de senha.',
+ q:['O que você precisa confirmar logo após criar a conta?',['Seu e-mail','Sua foto','Seu CEP'],0]},
+{t:'Criar seu produto',img:mock('Produtos',['Nome do produto','Tipo: Curso / E-book / Evento','Descrição'],'Salvar produto',M(0,'Produtos')),
+ txt:'O produto é aquilo que você vende. Cada produto tem nome, descrição, imagem de capa e preço.',
+ steps:['No menu, entre em "Produtos".','Toque em "Adicionar produto".','Escolha o tipo (curso, download, evento...).','Escreva um nome claro e uma descrição curta.','Envie uma capa e salve.'],
+ tip:'Nome simples vende mais. Diga o que a pessoa vai aprender ou receber.',
+ q:['Onde você cria um produto?',['Em "Produtos"','Em "Financeiro"','Em "Vendas"'],0]},
+{t:'Preço e checkout',img:mock('Preço',['Preço: R$ 47,00','Pagamento: único ou assinatura','Meios: Pix, cartão, boleto'],'Salvar preço',M(0,'Produtos')),
+ txt:'O checkout é a página onde o cliente paga. Você define o valor e como ele pode pagar.',
+ steps:['Abra seu produto e vá em "Preço" ou "Ofertas".','Digite o valor.','Escolha pagamento único ou assinatura.','Ative Pix, cartão e boleto.','Personalize o checkout (cores, imagem, depoimentos).'],
+ tip:'Faça uma compra de teste do seu próprio link para ver o que o cliente vê. Confira também as taxas na própria Kiwify antes de definir o preço.',
+ q:['O que é o checkout?',['A página onde o cliente paga','O painel de saques','A área de aulas'],0]},
+{t:'Área de membros (aulas)',img:mock('Área de membros',['Módulo 1: Boas-vindas','Aula 1: Vídeo de apresentação','Aula 2: Material em PDF'],'Adicionar aula',M(0,'Produtos')),
+ txt:'Se seu produto é um curso, as aulas ficam na área de membros. Quem compra recebe o acesso automaticamente.',
+ steps:['Abra o produto e entre em "Conteúdo" ou "Área de membros".','Crie um módulo.','Adicione aulas com vídeo, texto ou arquivos.','Organize a ordem arrastando.','Publique.'],
+ tip:'Comece com poucas aulas curtas. Dá para adicionar mais depois.',
+ q:['Onde ficam as aulas do curso?',['Na área de membros','No saldo','Nas afiliações'],0]},
+{t:'Divulgar e afiliados',img:mock('Link de venda',['Link do checkout (copiar)','Afiliados: ativar programa','Comissão: 30%'],'Copiar link',M(0,'Afiliados')),
+ txt:'Com o link do checkout você já pode vender: coloque no Instagram, WhatsApp ou anúncios. Também pode abrir um programa de afiliados, em que outras pessoas vendem por você e ganham comissão.',
+ steps:['No produto, copie o link do checkout.','Compartilhe nas suas redes.','Para afiliados: ative o programa e defina a comissão.','Aprove ou libere os afiliados.'],
+ tip:'Afiliados só compensam se a comissão for atraente. Comece com um percentual que deixe você com lucro.',
+ q:['O que o afiliado ganha?',['Uma comissão por venda','Todo o saldo','Nada'],0]},
+{t:'Vendas e saque',img:mock('Financeiro',['Saldo disponível: R$ 0,00','Saldo a liberar: R$ 0,00','Conta bancária cadastrada'],'Sacar',M(0,'Financeiro')),
+ txt:'Acompanhe quem comprou em "Vendas". O dinheiro entra no saldo e, depois do prazo de liberação, você saca para sua conta.',
+ steps:['Em "Vendas", veja pedidos, status e clientes.','Em "Financeiro", cadastre sua conta bancária.','Confira o saldo disponível.','Toque em "Sacar" e informe o valor.'],
+ tip:'Prazos e taxas de saque mudam. Confira os valores atuais na área Financeiro da própria Kiwify.',
+ q:['Onde você faz o saque?',['Em "Financeiro"','Em "Produtos"','Em "Afiliados"'],0]}
+];
+
+var done={},cur=-1;
+try{done=JSON.parse(localStorage.getItem('kw')||'{}')}catch(e){}
+function save(){try{localStorage.setItem('kw',JSON.stringify(done))}catch(e){}}
+var app=document.getElementById('app');
+
+function home(){
+  cur=-1;var c=Object.keys(done).length,p=Math.round(c/L.length*100);
+  var h='<div class="hero"><div class="badge">GUIA PASSO A PASSO</div><h1>🥝 Aprenda a usar a Kiwify</h1><p>Do zero à primeira venda, com telas ilustradas e testes rápidos.</p></div>';
+  h+='<div class="card prog"><b>Seu progresso</b><div class="bar"><i style="width:'+p+'%"></i></div><div class="mu">'+c+' de '+L.length+' lições concluídas ('+p+'%)</div></div><div class="list">';
+  L.forEach(function(l,i){h+='<button class="item'+(done[i]?' ok':'')+'" onclick="open_('+i+')"><span class="n">'+(done[i]?'✓':i+1)+'</span><span><b>'+l.t+'</b><span class="mu">'+(done[i]?'Concluída':'Toque para ver')+'</span></span></button>';});
+  h+='</div><p class="mu" style="margin-top:18px">Material educativo independente, não oficial. As telas são ilustrações; a Kiwify pode mudar a aparência.</p>';
+  app.innerHTML=h;window.scrollTo(0,0);
+}
+function open_(i){
+  cur=i;var l=L[i];
+  var h='<button class="back" onclick="home()">← Voltar</button><div class="mu">Lição '+(i+1)+' de '+L.length+'</div><h2>'+l.t+'</h2>'+l.img;
+  h+='<p>'+l.txt+'</p><div class="card"><b>Passo a passo</b><ol>';
+  l.steps.forEach(function(s){h+='<li>'+s+'</li>'});
+  h+='</ol></div><div class="tip">💡 '+l.tip+'</div>';
+  h+='<div class="card q"><b>Teste rápido</b><p>'+l.q[0]+'</p>';
+  l.q[1].forEach(function(o,k){h+='<button onclick="ans(this,'+(k===l.q[2])+')">'+o+'</button>'});
+  h+='<p class="mu" id="fb"></p></div>';
+  h+='<button class="btn" onclick="fin()">'+(done[i]?'Concluída ✓':'Marcar como concluída')+'</button>';
+  h+='<div class="row">'+(i>0?'<button class="btn s" onclick="open_('+(i-1)+')">← Anterior</button>':'')+(i<L.length-1?'<button class="btn s" onclick="open_('+(i+1)+')">Próxima →</button>':'')+'</div>';
+  app.innerHTML=h;window.scrollTo(0,0);
+}
+function ans(b,ok){b.className=ok?'r':'e';document.getElementById('fb').textContent=ok?'Isso mesmo! 🎉':'Quase! Tente outra opção.';}
+function fin(){done[cur]=1;save();if(cur<L.length-1)open_(cur+1);else home();}
+home();
+</script>
+</body>
+</html>
